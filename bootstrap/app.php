@@ -48,6 +48,10 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+if (class_exists('Laravel\Tinker\TinkerServiceProvider')) {
+    $app->register(Laravel\Tinker\TinkerServiceProvider::class);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
