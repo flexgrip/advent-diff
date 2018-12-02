@@ -53,6 +53,8 @@ class DiffPages extends Job
                 } else {
 
                     info('Found a difference: '.$holder);
+                    info('On url: '.$this->url);
+                    info(' -- ');
                 }
             }
         }
