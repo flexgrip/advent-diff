@@ -38,13 +38,17 @@ class DiffPages extends Job
 
             if($new) {
                 # Ok, we got the new body. Let's diff
-                $diff = Diff::compare($original, $new, true);
-                info(print_r($diff));
-                if(!$diff) {
-                    info(print_r($diff));
+                $difference = Diff::compare($original, $new);
+
+                $holder = '';
+                foreach($difference as $diff) {
+                    $holder .= $diff[1] == 2 ? $diff[0] : '';
+                }
+
+                if(!$holder) {
                     dispatch(new DiffPages($this->url))->delay(Carbon::now()->addSecond(7));
                 } else {
-                    info('This thing is the same');
+                    info('Found a difference: '.$holder);
                 }
             }
         }
