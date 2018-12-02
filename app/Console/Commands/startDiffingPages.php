@@ -99,8 +99,8 @@ class startDiffingPages extends Command
         # Let's get an original copy of each page
         $client = new Client();
 
-        foreach($urls as $url) {
-            $response = $client->request('GET', $real_urls);
+        foreach($real_urls as $url) {
+            $response = $client->request('GET', $url);
             $body = $response->getBody()->getContents();
             Cache::put($url,$body,'60');
             dispatch(new DiffPages($url));
