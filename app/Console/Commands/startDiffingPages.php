@@ -100,7 +100,7 @@ class startDiffingPages extends Command
         $client = new Client();
 
         foreach($urls as $url) {
-            $response = $client->request('GET', $url);
+            $response = $client->request('GET', $real_urls);
             $body = $response->getBody()->getContents();
             Cache::put($url,$body,'60');
             dispatch(new DiffPages($url));
