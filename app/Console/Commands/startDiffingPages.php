@@ -13,6 +13,7 @@ use App\Jobs\DiffPages;
 
 use Exception;
 use Illuminate\Console\Command;
+use GuzzleHttp\Client;
 
 
 /**
@@ -45,6 +46,17 @@ class startDiffingPages extends Command
      */
     public function handle()
     {
-        dispatch(new DiffPages('dude'));
+        $urls = [
+            'https://www.fanatec.com/us-en/bundle/product/forza-motorsport-wheel-bundle-for-xbox-one-and-pc.html'
+        ];
+        # Let's get an original copy of each page
+        $client = new Client();
+
+        foreach($urls as $url) {
+            $response = $client->request($url, 'test');
+            $body = $response->getBody();
+        }
+
+        dispatch(new DiffPages($body));
     }
 }
