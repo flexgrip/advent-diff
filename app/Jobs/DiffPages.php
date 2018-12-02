@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
 
 class DiffPages extends Job
 {
+
     protected $url;
     /**
      * Create a new job instance.
@@ -46,7 +48,8 @@ class DiffPages extends Job
                 }
 
                 if(!$holder) {
-                    dispatch(new DiffPages($this->url))->delay(Carbon::now()->addSecond(7));
+                    # Requeue the job 7 seconds later
+                    Queue::later(7, new DiffPages($this->url));
                 } else {
                     info('Found a difference: '.$holder);
                 }
