@@ -43,6 +43,8 @@ class DiffPages extends Job
                 if(!$diff) {
                     info(print_r($diff));
                     dispatch(new DiffPages($this->url))->delay(Carbon::now()->addSecond(7));
+                } else {
+                    info('This thing is the same');
                 }
             }
         }
