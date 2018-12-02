@@ -53,7 +53,7 @@ class startDiffingPages extends Command
         $client = new Client();
 
         foreach($urls as $url) {
-            $response = $client->request($url, 'test');
+            $response = $client->request('GET', $url);
             $body = $response->getBody();
         }
 
