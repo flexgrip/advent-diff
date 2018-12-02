@@ -30,7 +30,7 @@ class startDiffingPages extends Command
      *
      * @var string
      */
-    protected $signature = "start:diffingpages {testing=false}";
+    protected $signature = "start:diffingpages {testing=true}";
 
     /**
      * The console command description.
@@ -94,7 +94,7 @@ class startDiffingPages extends Command
 
         $test_urls = ['https://2ndraiders.com/diff2.html'];
 
-        $urls = $this->argument('testing') ? $real_urls : $test_urls;
+        $urls = $this->argument('testing') ? $test_urls : $real_urls;
 
         # Let's get an original copy of each page
         $client = new Client();
