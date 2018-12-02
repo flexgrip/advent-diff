@@ -39,7 +39,7 @@ class DiffPages extends Job
             if($new) {
                 # Ok, we got the new body. Let's diff
                 $diff = Diff::compare($original, $new, true);
-
+                info(print_r($diff));
                 if(!$diff) {
                     info(print_r($diff));
                     dispatch(new DiffPages($this->url))->delay(Carbon::now()->addSecond(7));
