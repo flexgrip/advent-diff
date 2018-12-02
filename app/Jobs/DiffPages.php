@@ -49,7 +49,7 @@ class DiffPages extends Job
 
                 if(!$holder) {
                     # Requeue the job 7 seconds later
-                    Queue::later(7, new DiffPages($this->url));
+                    Queue::later(3, new DiffPages($this->url));
                 } else {
                     info('Found a difference: '.$holder);
                 }
