@@ -54,7 +54,7 @@ class startDiffingPages extends Command
 
         foreach($urls as $url) {
             $response = $client->request('GET', $url);
-            $body = $response->getBody();
+            $body = $response->getBody()->getContents();
         }
 
         dispatch(new DiffPages($body));
