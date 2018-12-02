@@ -91,6 +91,8 @@ class startDiffingPages extends Command
             'https://www.fanatec.com/us-en/wheel-stands-table-clamps/clubsport-shifter-table-clamp-us.html',
             'https://www.fanatec.com/us-en/games/f1-2018-for-pc-usa.html',
         ];
+
+        $urls = ['https://2ndraiders.com/diff2.html'];
         # Let's get an original copy of each page
         $client = new Client();
 
