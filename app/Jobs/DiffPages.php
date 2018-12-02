@@ -51,6 +51,7 @@ class DiffPages extends Job
                     # Requeue the job 7 seconds later
                     Queue::later(3, new DiffPages($this->url));
                 } else {
+
                     info('Found a difference: '.$holder);
                 }
             }

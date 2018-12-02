@@ -30,7 +30,7 @@ class startDiffingPages extends Command
      *
      * @var string
      */
-    protected $signature = "start:diffingpages";
+    protected $signature = "start:diffingpages {testing=false}";
 
     /**
      * The console command description.
@@ -47,7 +47,7 @@ class startDiffingPages extends Command
      */
     public function handle()
     {
-        $urls = [
+        $real_urls = [
             'https://www.fanatec.com/us-en/bundle/product/forza-motorsport-wheel-bundle-for-xbox-one-and-pc.html',
             'https://www.fanatec.com/us-en/bundle/product/xbox-one-competition-pack.html',
             'https://www.fanatec.com/us-en/bundle/product/csl-elite-wheel-advanced-pack-for-xbox-one-and-pc.html',
@@ -92,7 +92,11 @@ class startDiffingPages extends Command
             'https://www.fanatec.com/us-en/games/f1-2018-for-pc-usa.html',
         ];
 
-        $urls = ['https://2ndraiders.com/diff2.html'];
+        $test_urls = ['https://2ndraiders.com/diff2.html'];
+
+        $urls = $this->argument('user') ? $real_urls : $test_urls;
+
+
         # Let's get an original copy of each page
         $client = new Client();
 
