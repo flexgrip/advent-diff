@@ -94,8 +94,7 @@ class startDiffingPages extends Command
 
         $test_urls = ['https://2ndraiders.com/diff2.html'];
 
-        $urls = $this->argument('user') ? $real_urls : $test_urls;
-
+        $urls = $this->argument('testing') ? $real_urls : $test_urls;
 
         # Let's get an original copy of each page
         $client = new Client();
